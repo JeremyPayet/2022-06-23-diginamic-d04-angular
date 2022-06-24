@@ -8,7 +8,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ColleagueListComponent implements OnInit {
 
-  @Input() colleague_list: Colleague[] = [
+  @Input() @Output() colleague_list: Colleague[] = [
     {
       pseudo: "Pseudo1",
       score: 1000,
