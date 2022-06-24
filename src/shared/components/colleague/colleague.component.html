@@ -1,4 +1,4 @@
-<img src="{{colleague.photo}}" class="img-thumbnail w-50">
+<img src="{{colleague.photo}}" class="img-thumbnail w-50" style="aspect-ratio: 2 / 2;">
 <p>{{colleague.pseudo | uppercase}}</p>
 <p>{{colleague.score | score}}</p>
 <tc-like-hate class="row" (change)="changeValue($event)" [disabledH]="disableHate()" [disabledL]="disableLike()" ></tc-like-hate>
