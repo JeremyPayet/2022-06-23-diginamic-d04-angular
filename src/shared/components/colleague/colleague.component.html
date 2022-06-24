@@ -1,3 +1,4 @@
 <img src="{{colleague.photo}}">
 <p>{{colleague.pseudo}}</p>
 <p>{{colleague.score}}</p>
+<tc-like-hate (change)="changeValue($event)" [disabledH]="disableHate()" [disabledL]="disableLike()" ></tc-like-hate>

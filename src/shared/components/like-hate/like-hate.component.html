@@ -1,2 +1,2 @@
-<button type="button" class="btn btn-success">J'aime</button>
-<button type="button" class="btn btn-danger">Je déteste</button>
+<button type="button" class="btn btn-success" (click)="like();" [disabled]="disabledL" >J'aime</button>
+<button type="button" class="btn btn-danger"  (click)="hate();" [disabled]="disabledH">Je déteste</button>

@@ -1,5 +1,5 @@
 export interface Colleague {
   pseudo: string;
-  score: string;
+  score: number;
   photo?: string;
 }
