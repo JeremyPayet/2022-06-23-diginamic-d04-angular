@@ -1,4 +1,5 @@
-<img src="{{colleague.photo}}">
+<img src="{{colleague.photo}}" class="img-thumbnail w-50">
 <p>{{colleague.pseudo}}</p>
-<p>{{colleague.score}}</p>
-<tc-like-hate (change)="changeValue($event)" [disabledH]="disableHate()" [disabledL]="disableLike()" ></tc-like-hate>
+<p><i *ngIf="colleague.score >= 0">+</i>{{colleague.score}}</p>
+<tc-like-hate class="row" (change)="changeValue($event)" [disabledH]="disableHate()" [disabledL]="disableLike()" ></tc-like-hate>
+

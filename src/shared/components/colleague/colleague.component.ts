@@ -1,4 +1,3 @@
-import { LikeHateComponent } from './../like-hate/like-hate.component';
 import { LikeHate } from './../../../models/like-hate';
 import { Colleague } from './../../../models/colleague';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
