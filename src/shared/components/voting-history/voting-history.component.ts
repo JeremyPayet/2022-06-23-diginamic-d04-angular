@@ -1,15 +1,17 @@
 import { LikeHate } from 'src/models/like-hate';
 import { Vote } from './../../../models/vote';
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { VoteService } from 'src/providers/vote.service';
 
 @Component({
   selector: 'tc-voting-history',
   templateUrl: './voting-history.component.html',
-  styleUrls: ['./voting-history.component.scss']
+  styleUrls: ['./voting-history.component.scss'],
+  providers:[VoteService]
 })
 export class VotingHistoryComponent implements OnInit {
 
-  @Input() @Output() vote_list: Vote[] = [
+  /*@Input() @Output() vote_list: Vote[] = [
     {
       colleague:
       {
@@ -29,7 +31,8 @@ export class VotingHistoryComponent implements OnInit {
       vote: LikeHate.HATE
     }
   ];
-
+  */
+  @Input() @Output() vote_list: Vote[] = new VoteService().list() ;
   constructor() { }
 
   ngOnInit(): void {

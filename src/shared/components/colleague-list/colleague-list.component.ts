@@ -1,3 +1,4 @@
+import { ColleagueService } from './../../../providers/colleague.service';
 import { Colleague } from './../../../models/colleague';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ColleagueListComponent implements OnInit {
 
-  @Input() @Output() colleague_list: Colleague[] = [
+  /*@Input() @Output() colleague_list: Colleague[] = [
     {
       pseudo: "Pseudo1",
       score: 1000,
@@ -40,11 +41,13 @@ export class ColleagueListComponent implements OnInit {
       photo: "https://images.assetsdelivery.com/compings_v2/tanyadanuta/tanyadanuta1910/tanyadanuta191000003.jpg"
     }
   ];
+  */
+  @Input() @Output() colleague_list: Colleague[] | undefined;
 
-
-  constructor() { }
+  constructor(private liste: ColleagueService) { }
 
   ngOnInit(): void {
+    this.colleague_list = this.liste.list();
   }
 
 }
