@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    WelcomeModule
+    WelcomeModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
