@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Colleague } from 'src/models/colleague';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
+const link = "https://colleagues-app.herokuapp.com/api/v2/colleagues"
 @Injectable({
   providedIn: 'root'
 })
 export class ColleagueService {
 
-  constructor() { }
 
-  list(): Colleague[] {
+  constructor(private client: HttpClient) { }
+
+  /*list(): Colleague[] {
     // TODO use mock
    return [
       {
@@ -43,4 +47,5 @@ export class ColleagueService {
       }
     ];
   }
+  */
 }

@@ -1,14 +1,22 @@
+import { HttpClient } from '@angular/common/http';
+import { Colleague, FullColleague } from './../models/colleague';
 import { Injectable } from '@angular/core';
+import { Observable, Subject, tap } from 'rxjs';
 import { LikeHate } from 'src/models/like-hate';
 import { Vote } from 'src/models/vote';
 
+const link = "https://colleagues-app.herokuapp.com/api/v2/votes"
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class VoteService {
 
-  constructor() { }
+  private compteur = new Subject<Vote>();
 
+  constructor(private client: HttpClient) { }
+  /*
   list(): Vote[] {
     // TODO use mock
     return [
@@ -31,5 +39,36 @@ export class VoteService {
         vote: LikeHate.HATE
       }
     ];;
+  }
+  */
+  ajouterVote(element: Vote) {
+    this.compteur.next(element)
+  }
+
+  abonner(): Observable<Vote> {
+    return this.compteur.asObservable();
+  }
+
+  addVote(collegue: Colleague, vote: LikeHate) {
+    const newVote = {
+      colleauge: { ...collegue },
+      vote: vote
+    };
+
+    return this.client.post<FullColleague>(link, {
+      "pseudo": collegue.pseudo,
+      "like_hate": vote
+    }).pipe(
+      tap(fullColle => this.compteur.next({
+        colleague: fullColle,
+        vote,
+        score: fullColle.score
+      }))
+    )
+    //this.ajouterVote(newVote)
+  }
+
+  listing(URL: string): Observable<Vote[]> {
+    return this.client.get<Vote[]>(URL)
   }
 }

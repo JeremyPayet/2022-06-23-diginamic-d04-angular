@@ -1,5 +1,7 @@
+import { Refresh } from './../../models/refresh';
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from 'src/shared/shared.module';
+import { RefreshService } from 'src/providers/refresh.service';
 
 @Component({
   selector: 'tc-welcome',
@@ -8,9 +10,12 @@ import { SharedModule } from 'src/shared/shared.module';
 })
 export class WelcomePage implements OnInit {
 
-  constructor() { }
+  constructor(private refreshEvent: RefreshService) { }
 
   ngOnInit(): void {
   }
 
+  refresh() {
+    this.refreshEvent.publish(Refresh.REFRESH)
+  }
 }

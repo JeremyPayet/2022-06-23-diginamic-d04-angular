@@ -3,3 +3,8 @@ export interface Colleague {
   score: number;
   photo?: string;
 }
+
+export interface FullColleague extends Colleague {
+  first: string;
+  last: string;
+}

@@ -1,6 +1,10 @@
+import { Vote } from './../../../models/vote';
+import { ColleagueService } from './../../../providers/colleague.service';
+import { VoteService } from 'src/providers/vote.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CompteurService } from 'src/services/compteur.service';
+import { CompteurService } from 'src/providers/compteur.service';
 import { LikeHate } from 'src/models/like-hate';
+import { Colleague } from 'src/models/colleague';
 
 @Component({
   selector: 'tc-like-hate',
@@ -14,18 +18,19 @@ export class LikeHateComponent implements OnInit {
 
   @Output() change: EventEmitter<LikeHate> = new EventEmitter<LikeHate>();
 
-  constructor(private service: CompteurService) { }
+  vote!: Vote;
+
+  constructor(private compteur: CompteurService, private colleague: ColleagueService, private votechange: VoteService) { }
 
   ngOnInit(): void {
   }
 
   like() {
     this.change.emit(LikeHate.LIKE);
-    this.service.onVote(LikeHate.LIKE);
+    this.compteur.onVote(LikeHate.LIKE);
   }
   hate() {
     this.change.emit(LikeHate.HATE);
-    this.service.onVote(LikeHate.HATE);
+    this.compteur.onVote(LikeHate.HATE);
   }
-
 }

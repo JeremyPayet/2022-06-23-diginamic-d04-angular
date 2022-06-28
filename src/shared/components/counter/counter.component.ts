@@ -1,7 +1,6 @@
 import { LikeHate } from './../../../models/like-hate';
-import { Component, Injectable, Input, OnInit } from '@angular/core';
-import { Observable, Subject, fromEvent } from 'rxjs';
-import { CompteurService } from 'src/services/compteur.service';
+import { Component, OnInit } from '@angular/core';
+import { CompteurService } from 'src/providers/compteur.service';
 
 @Component({
   selector: 'tc-counter',
@@ -15,8 +14,6 @@ export class CounterComponent implements OnInit {
 
   like_count: number = 0;
   hate_count: number = 0;
-
-  clicks = fromEvent(document, 'click');
 
   ngOnInit(): void {
     this.lk.abonner().subscribe((element: LikeHate) => {

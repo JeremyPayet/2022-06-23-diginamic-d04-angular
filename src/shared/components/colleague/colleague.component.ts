@@ -1,6 +1,10 @@
+import { Vote } from 'src/models/vote';
+import { VoteService } from 'src/providers/vote.service';
+import { ColleagueService } from './../../../providers/colleague.service';
 import { LikeHate } from './../../../models/like-hate';
 import { Colleague } from './../../../models/colleague';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'tc-colleague',
@@ -18,9 +22,24 @@ export class ColleagueComponent implements OnInit {
   @Output() disabledL?: boolean;
   @Output() disabledH?: boolean;
 
-  constructor() { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json"
+    })
+  };
+
+  constructor(private voteservice: VoteService, private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.post<Vote>(
+      // url d'accès au service
+      'https://colleagues-app.herokuapp.com/api/v2/votes',
+      // corps de la réquête
+      { colleague: this.colleague, vote: LikeHate.LIKE },
+      // options de la requête HTTP
+      this.httpOptions).subscribe(newVote => {
+        console.log(newVote.vote)
+      });
   }
 
   changeValue(val: LikeHate): void {
@@ -29,6 +48,7 @@ export class ColleagueComponent implements OnInit {
     } else {
       this.colleague.score = this.colleague.score - 1;
     }
+    // this.voteservice.ajouterVote({ colleague: { ...this.colleague }, vote: val, score: this.colleague.score })
     this.disableLike();
     this.disableHate();
   }
@@ -47,5 +67,12 @@ export class ColleagueComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  sendVote(val: LikeHate) {
+    this.voteservice.addVote(this.colleague, val)
+      .subscribe(newColleague => {
+        this.colleague.score = newColleague.score
+      })
   }
 }
