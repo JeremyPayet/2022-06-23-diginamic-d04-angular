@@ -31,15 +31,6 @@ export class ColleagueComponent implements OnInit {
   constructor(private voteservice: VoteService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.post<Vote>(
-      // url d'accès au service
-      'https://colleagues-app.herokuapp.com/api/v2/votes',
-      // corps de la réquête
-      { colleague: this.colleague, vote: LikeHate.LIKE },
-      // options de la requête HTTP
-      this.httpOptions).subscribe(newVote => {
-        console.log(newVote.vote)
-      });
   }
 
   changeValue(val: LikeHate): void {

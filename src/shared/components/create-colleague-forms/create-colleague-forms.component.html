@@ -1,0 +1,78 @@
+<form class="p-5 w-75" action="#" id="formcolleague" #monForm="ngForm">
+  <div class="row">
+    <div class="col">
+      <label for="pseudo">
+        Pseudo
+      </label>
+    </div>
+    <div class="col">
+      <input [(ngModel)]="monModel.pseudo" type="text" name="pseudo" id="pseudo" class="w-100" #pseudo=ngModel required>
+    </div>
+    <div class="col">
+      <p *ngIf="pseudo.dirty && pseudo.invalid">
+        Le champ Pseudo est invalide.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="name">
+        Nom
+      </label>
+    </div>
+    <div class="col">
+      <input [(ngModel)]="monModel.nom" type="text" name="name" id="name" class="w-100" #nom="ngModel" required
+        minlength="2">
+    </div>
+    <div class="col">
+      <p *ngIf="nom.dirty && nom.invalid">
+        Le champ Nom est invalide.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="surname">
+        Prenom
+      </label>
+    </div>
+    <div class="col">
+      <input [(ngModel)]="monModel.prenom" type="text" name="surname" id="surname" class="w-100" #prenom="ngModel"
+        required minlength="2">
+    </div>
+    <div class="col">
+      <p *ngIf="prenom.dirty && prenom.invalid">
+        Le champ Prenom est invalide.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="url_photo">
+        Photo URL
+      </label>
+    </div>
+    <div class="col">
+      <input [(ngModel)]="monModel.photo_url" type="text" name="url_photo" id="url_photo" class="w-100" #url="ngModel"
+        required>
+    </div>
+    <div class="col">
+      <p *ngIf="url.dirty && url.invalid">
+        Le champ Photo URL est invalide.
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+      <button type="submit" class="float-right btn btn-primary" data-toggle="modal" data-target="#myModal" name="button"
+        [disabled]="!monForm.valid">Ajouter</button>
+    </div>
+    <div class="col">
+      <p *ngIf="monForm.dirty && monForm.invalid">
+        Le formulaire est invalide.
+      </p>
+    </div>
+  </div>
+</form>
