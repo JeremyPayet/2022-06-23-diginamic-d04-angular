@@ -67,7 +67,7 @@
     </div>
     <div class="col">
       <button type="submit" class="float-right btn btn-primary" data-toggle="modal" data-target="#myModal" name="button"
-        [disabled]="!monForm.valid">Ajouter</button>
+        [disabled]="!monForm.valid" (click)="valider()">Ajouter</button>
     </div>
     <div class="col">
       <p *ngIf="monForm.dirty && monForm.invalid">
