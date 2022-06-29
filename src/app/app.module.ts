@@ -7,6 +7,7 @@ import { WelcomeModule } from "src/pages/welcome/welcome.module";
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateColleagueReactiveModule } from 'src/pages/create-colleague-reactive/create-colleague-reactive.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CreateColleagueModule
+    CreateColleagueModule,
+    CreateColleagueReactiveModule
   ],
   providers: [],
   bootstrap: [AppComponent]

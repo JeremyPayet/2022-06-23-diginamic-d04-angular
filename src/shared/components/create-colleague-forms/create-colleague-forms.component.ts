@@ -1,3 +1,4 @@
+import { FirstLastValidatorDirective } from './../../validators/first-last-validator.directive';
 import { HttpHeaders } from '@angular/common/http';
 import { Colleague } from './../../../models/colleague';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +14,8 @@ const link = "https://colleagues-app.herokuapp.com/api/v2/colleagues"
 @Component({
   selector: 'tc-create-colleague-forms',
   templateUrl: './create-colleague-forms.component.html',
-  styleUrls: ['./create-colleague-forms.component.scss']
+  styleUrls: ['./create-colleague-forms.component.scss'],
+  viewProviders: [FirstLastValidatorDirective]
 })
 export class CreateColleagueFormsComponent implements OnInit {
 

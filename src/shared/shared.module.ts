@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LikeHateComponent } from '../shared/components/like-hate/like-hate.component';
@@ -9,6 +9,8 @@ import { VotingHistoryComponent } from '../shared/components/voting-history/voti
 import { CounterComponent } from '../shared/components/counter/counter.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateColleagueFormsComponent } from './components/create-colleague-forms/create-colleague-forms.component';
+import { FirstLastValidatorDirective } from './validators/first-last-validator.directive';
+import { CreateColleagueReactiveFormsComponent } from './components/create-colleague-reactive-forms/create-colleague-reactive-forms.component';
 
 
 @NgModule({
@@ -19,12 +21,15 @@ import { CreateColleagueFormsComponent } from './components/create-colleague-for
     ScorePipe,
     VotingHistoryComponent,
     CounterComponent,
-    CreateColleagueFormsComponent
+    CreateColleagueFormsComponent,
+    FirstLastValidatorDirective,
+    CreateColleagueReactiveFormsComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     LikeHateComponent,
@@ -32,7 +37,8 @@ import { CreateColleagueFormsComponent } from './components/create-colleague-for
     ColleagueListComponent,
     VotingHistoryComponent,
     CounterComponent,
-    CreateColleagueFormsComponent
+    CreateColleagueFormsComponent,
+    CreateColleagueReactiveFormsComponent
   ],
   bootstrap: [
     LikeHateComponent

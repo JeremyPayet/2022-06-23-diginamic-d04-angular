@@ -1,5 +1,5 @@
-<h2>Formulaire collègue</h2>
-<form tcFirstLastValidator class="p-5 w-75" action="#" id="formcolleague" #monForm="ngForm" >
+<h2>Formulaire collègue réactif</h2>
+<form class="p-5 w-75" action="#" id="formcolleague" [formGroup]="monForm">
   <div class="row">
     <div class="col">
       <label for="pseudo">
@@ -7,10 +7,10 @@
       </label>
     </div>
     <div class="col">
-      <input [(ngModel)]="monModel.pseudo" type="text" name="pseudo" id="pseudo" class="w-100" #pseudo=ngModel required>
+      <input type="text" formControlName="pseudo" name="pseudo" id="pseudo" class="w-100">
     </div>
     <div class="col">
-      <p *ngIf="pseudo.dirty && pseudo.invalid">
+      <p *ngIf="monForm.controls['pseudo'].dirty && monForm.controls['pseudo'].invalid">
         Le champ Pseudo est invalide.
       </p>
     </div>
@@ -22,11 +22,10 @@
       </label>
     </div>
     <div class="col">
-      <input [(ngModel)]="monModel.nom" type="text" name="name" id="name" class="w-100" #nom="ngModel" required
-        minlength="2">
+      <input type="text" formControlName="nom" name="name" id="name" class="w-100">
     </div>
     <div class="col">
-      <p *ngIf="nom.dirty && nom.invalid">
+      <p *ngIf="monForm.controls['nom'].dirty && monForm.controls['nom'].invalid">
         Le champ Nom est invalide.
       </p>
     </div>
@@ -38,11 +37,10 @@
       </label>
     </div>
     <div class="col">
-      <input [(ngModel)]="monModel.prenom" type="text" name="surname" id="surname" class="w-100" #prenom="ngModel"
-        required minlength="2">
+      <input type="text" formControlName="prenom" name="surname" id="surname" class="w-100" required minlength="2">
     </div>
     <div class="col">
-      <p *ngIf="prenom.dirty && prenom.invalid">
+      <p *ngIf="monForm.controls['prenom'].dirty && monForm.controls['prenom'].invalid">
         Le champ Prenom est invalide.
       </p>
     </div>
@@ -54,11 +52,10 @@
       </label>
     </div>
     <div class="col">
-      <input [(ngModel)]="monModel.photo_url" type="text" name="url_photo" id="url_photo" class="w-100" #url="ngModel"
-        required>
+      <input type="text" formControlName="url" name="url_photo" id="url_photo" class="w-100" required>
     </div>
     <div class="col">
-      <p *ngIf="url.dirty && url.invalid">
+      <p *ngIf="monForm.controls['url'].dirty && monForm.controls['url'].invalid">
         Le champ Photo URL est invalide.
       </p>
     </div>
@@ -68,7 +65,7 @@
     </div>
     <div class="col">
       <button type="submit" class="float-right btn btn-primary" data-toggle="modal" data-target="#myModal" name="button"
-        [disabled]="!monForm.valid" (click)="valider()">Ajouter</button>
+        (click)="valider()" [disabled]="disableButton()">Ajouter</button>
     </div>
     <div class="col">
       <p *ngIf="monForm.dirty && monForm.invalid">
